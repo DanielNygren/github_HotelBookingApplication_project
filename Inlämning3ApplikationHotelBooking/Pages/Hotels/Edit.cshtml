@@ -1,0 +1,45 @@
+﻿@page "{id:int}"
+@model Inlämning3ApplikationHotelBooking.Pages.Hotels.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Hotel</h4>
+<hr />
+<div>
+    <div>
+        <form method="post">
+            <input type="hidden" asp-for="Hotel.ID" />
+            <div>
+                <label>Name</label>
+                <input asp-for="Hotel.Name" />
+            </div>
+            <div>
+                <label>Img</label>
+                <input asp-for="Hotel.ImgPath" />
+            </div>
+            <div>
+                <label>Country</label>
+                <input asp-for="Hotel.Country" />
+            </div>
+            <div>
+                <label>City</label>
+                <input asp-for="Hotel.City" />
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

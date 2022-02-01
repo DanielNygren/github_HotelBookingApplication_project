@@ -1,0 +1,54 @@
+﻿@page "{id:int}, {selecteddate:DateTime}"
+@model Inlämning3ApplikationHotelBooking.Pages.Rooms.IndexModel
+@using Inlämning3ApplikationHotelBooking.Models;
+
+<h4>Hotel Booking</h4>
+<div>
+    <h4>@Html.DisplayFor(model => model.Hotel.Name)</h4>
+    <table>
+        <tr>
+            <th><img class="img-hotel" src="@Html.DisplayFor(model => model.Hotel.ImgPath)" alt="@Html.DisplayFor(model => model.Hotel.ImgPath)" /></th>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td>@Model.Hotel.Country</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>@Model.Hotel.City</td>
+        </tr>
+        <tr>
+            <th>Room Type</th>
+            <td>@Model.Room.RoomType</td>
+        </tr>
+        <tr>
+            <th>Bed Size</th>
+            <td>@Model.Room.BedSize</td>
+        </tr>
+        <tr>
+            <th>Date Booked</th>
+            <td>@Model.SelectedDate</td>
+        </tr>
+    </table>
+    <hr />
+</div>
+
+<div>
+    <div>
+        <form method="post">
+            <div>
+                <button type="submit" value="Create">Book Room</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Hotels/Details" asp-route-id="@Model.Hotel.ID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<h4>@Html.DisplayFor(model => model.ReplyMessage)</h4>

@@ -1,0 +1,16 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Accounts.CreateModel
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <partial name="_EditForm" for="Account" />
+    <button type="submit">Create Account</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,37 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Hotels.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Hotel</h4>
+    <hr />
+    <dl>
+        <dd>
+            <img  href="@Model.Hotel.ImgPath" />
+        </dd>
+        <dt>
+            Country
+        </dt>
+        <dd>
+            @Model.Hotel.Country
+        </dd>
+        <dt>
+            City
+        </dt>
+        <dd>
+            @Model.Hotel.City
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Hotel.ID" />
+        <input type="submit" value="Delete"/> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

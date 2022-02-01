@@ -1,0 +1,46 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Accounts.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl>
+        <dt>
+            First Name
+        </dt>
+        <dd>
+            @Model.Account.FirstName)
+        </dd>
+        <dt>
+            Last Name
+        </dt>
+        <dd>
+            @Model.Account.LastName)
+        </dd>
+        <dt>
+            Email Address
+        </dt>
+        <dd>
+            @Model.Account.EmailAddress)
+        </dd>
+        <dt>
+            User
+        </dt>
+        <dd>
+            @Model.Account.User.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Account.ID" />
+        <input type="submit" value="Delete"/> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

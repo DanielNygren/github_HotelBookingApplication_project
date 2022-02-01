@@ -1,0 +1,34 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Reviews.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl>
+        <dt>
+            Comment
+        </dt>
+        <dd>
+            @Model.Review.Comment
+        </dd>
+        <dt>
+            @Model.Review.Rating
+        </dt>
+        <dd>
+            @Model.Review.Rating
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Review.ID" />
+        <input type="submit" value="Delete"/> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

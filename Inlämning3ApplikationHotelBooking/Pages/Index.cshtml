@@ -1,0 +1,18 @@
+﻿@page
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1>Welcome To Hotel Bookings</h1>
+
+    <a class="nav-link" asp-page="/hotels/index">Hotels</a>
+    <a class="nav-link" asp-page="/Accounts/index">Account</a>
+    <a class="nav-link" asp-page="/Reviews/index">Reviews</a>
+    @if (User.IsInRole("admin"))
+    {
+        <a class="nav-link" asp-page="/Bookings/index">Bookings</a>
+    }
+
+</div>
+

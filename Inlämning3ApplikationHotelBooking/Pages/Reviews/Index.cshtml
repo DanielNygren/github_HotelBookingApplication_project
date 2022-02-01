@@ -1,0 +1,98 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Reviews.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<div>
+    <div>
+        <form method="get">
+            <div>
+                <label for="SearchTerm">Search</label>
+                <input type="search" name="SearchTerm" id="SearchTerm" value="@Model.SearchTerm" />
+            </div>
+            <div>
+                <label>Order</label>
+                <select onchange="javascript:this.form.submit()" asp-for="@Model.SortReviews" asp-items="Model.SortReviweaList">
+                    <option>Hotel</option>
+                    <option>Rating</option>
+                    <option>Reviewers Name</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" value="See Hotels">Search Reviews</button>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Reviewer
+            </th>
+            <th>
+                Hotel
+            </th>
+            <th>
+                Comment
+            </th>
+            <th>
+                Rating
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Review) {
+        <tr>
+            <td>
+                @item.Account.FirstName
+            </td>
+            <td>
+                @item.Hotel.Name
+            </td>
+            <td>
+                @item.Comment
+            </td>
+            <td>
+                @if (item.Rating.ToString() == "One")
+                {
+                    <p>⭐</p>
+                }
+                @if (item.Rating.ToString() == "Two")
+                {
+                    <p>⭐⭐</p>
+                }
+                @if (item.Rating.ToString() == "Three")
+                {
+                    <p>⭐⭐⭐</p>
+                }
+                @if (item.Rating.ToString() == "Four")
+                {
+                    <p>⭐⭐⭐⭐</p>
+                }
+                @if (item.Rating.ToString() == "Five")
+                {
+                    <p>⭐⭐⭐⭐⭐</p>
+                }
+            </td>
+            <td>
+                @if (User.IsInRole("admin"))
+                 {
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> 
+                    <a asp-page = "./Details" asp-route-id = "@item.ID" > Details </a>
+                    <a asp-page = "./Delete" asp-route-id = "@item.ID" > Delete </a>
+                 }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

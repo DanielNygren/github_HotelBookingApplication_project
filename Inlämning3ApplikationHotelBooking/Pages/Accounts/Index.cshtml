@@ -1,0 +1,83 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Accounts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Account</h1>
+
+@if (User.IsInRole("admin"))
+{
+}
+else
+{
+    <div>
+        <dl>
+            <dt>
+                First Name
+            </dt>
+            <dd>
+                @Model.Account.FirstName
+            </dd>
+            <dt>
+                Last Name
+            </dt>
+            <dd>
+                @Model.Account.LastName
+            </dd>
+            <dt>
+                EmailAddress
+            </dt>
+            <dd>
+                @Model.Account.EmailAddress
+            </dd>
+            <dd>
+                <a asp-page="./Edit" asp-route-id="@Model.Account.ID">Edit</a>
+                <a asp-page="./Details" asp-route-id="@Model.Account.ID">Details</a>
+            </dd>
+        </dl>
+    </div>
+}
+
+
+<h2>Bookings</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Hotel
+            </th>
+            <th>
+                Room Type
+            </th>
+            <th>
+                Bed Size
+            </th>
+            <th>
+                Booked Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tbody>
+        @foreach (var booking in Model.BookingList)
+        {
+            <tr>
+                <td>@booking.Room.Hotel.Name</td>
+                <td>@booking.Room.RoomType</td>
+                <td>@booking.Room.BedSize</td>
+                <td>@booking.DateBooked.ToShortDateString()</td>
+                <td>
+                    <a asp-page="/bookings/Details" asp-route-id="@booking.ID">Details</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a asp-page="/bookings/Delete" asp-route-id="@booking.ID">Delete</a>
+                        <a asp-page="/bookings/Edit" asp-route-id="@booking.ID">Edit</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

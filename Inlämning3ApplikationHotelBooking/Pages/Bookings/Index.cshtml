@@ -1,0 +1,41 @@
+﻿@page "{id:int}, {selecteddate:DateTime}"
+@model Inlämning3ApplikationHotelBooking.Pages.Bookings.IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2>My Bookings</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hotel</th>
+            <th>Roomtype</th>
+            <th>Bedsize</th>
+            <th>Date Booked)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.Room.Hotel.Name</td>
+                <td>@booking.Room.RoomType</td>
+                <td>@booking.Room.BedSize</td>
+                <td>@booking.DateBooked</td>
+                <td>
+                    <a asp-page="/Bookings/Details" asp-route-id="@booking.ID">Details</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a asp-page="/Bookings/Delete" asp-route-id="@booking.ID">Delete</a>
+                        <a asp-page="/Bookings/Edit" asp-route-id="@booking.ID" asp-route-selecteddate="@Model.SelectedDate">Edit</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

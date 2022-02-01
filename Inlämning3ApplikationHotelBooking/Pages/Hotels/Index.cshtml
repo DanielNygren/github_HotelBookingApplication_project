@@ -1,0 +1,84 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Hotels.UserIndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Hotels</h1>
+<hr/>
+<div>
+    <div>
+        <form method="get">
+            <div class="inline-flex">
+                <div class="form-content">
+                    <label for="SearchTerm">Search</label>
+                    <input type="search" name="SearchTerm" id="SearchTerm" value="@Model.SearchTerm" />
+                </div>
+                <div class="form-content">
+                    <label>Country</label>
+                    <select onchange="javascript:this.form.submit()" asp-for="@Model.SortCountry" asp-items="Model.SortCountryList">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <label>City</label>
+                    <select onchange="javascript:this.form.submit()" asp-for="@Model.SortCity" asp-items="Model.SortCityList">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-content">
+                    <button type="submit" value="See Hotels" class="">See Hotels</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Rating</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @for (var i = 0; i < Model.Hotels.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.Hotels[i].Name
+                </td>
+                <td>
+                    <img class="img-hotel" src="@Model.Hotels[i].ImgPath" alt="@Model.Hotels[i].ImgPath" />
+                </td>
+                <td>
+                    @Model.Hotels[i].Country
+                </td>
+                <td>
+                    @Model.Hotels[i].City
+                </td>
+                <td>
+                    @Model.Raitings[i]
+                </td>
+                <td>
+                    <a  asp-page="./Details" asp-route-id="@Model.Hotels[i].ID">Details</a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@Model.Hotels[i].ID">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@Model.Hotels[i].ID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

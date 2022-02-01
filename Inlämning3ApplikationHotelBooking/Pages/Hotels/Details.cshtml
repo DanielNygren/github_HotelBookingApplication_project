@@ -1,0 +1,141 @@
+﻿@page "{id:int}"
+@model Inlämning3ApplikationHotelBooking.Pages.Hotels.DetailsModel
+@using Inlämning3ApplikationHotelBooking.Models;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Booking</h1>
+
+<div>
+    <h4>@Model.Hotel.Name  @Model.Rating</h4>
+    <hr />
+    <dl>
+        <dd>
+            <img class="img-hotel" src="@Model.Hotel.ImgPath" alt="@Model.Hotel.ImgPath" />
+        </dd>
+        <dt>
+            Country
+        </dt>
+        <dd>
+            @Model.Hotel.Country
+        </dd>
+        <dt>
+            City
+        </dt>
+        <dd>
+            @Model.Hotel.City
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <div>
+        <form method="get">
+            <div>
+                <div>
+                    <label>Date</label>
+                    <input onchange="javascript:this.form.submit()" type="date" asp-for="@Model.SelectedDate"/>
+                </div>
+                <div>
+                    <label>Room Typ</label>
+                    <select onchange="javascript:this.form.submit()" asp-for="SelectedRoomType" asp-items="Html.GetEnumSelectList<RoomType>()">
+                    </select>
+                </div>
+                <div>
+                    <label>Bed Typ</label>
+                    <select onchange="javascript:this.form.submit()" asp-for="SelectedBedSize" asp-items="Html.GetEnumSelectList<BedSize>()">
+                    </select>
+                </div>
+                <div>
+                    <button type="submit" value="See Available Rooms">See Available Rooms</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr />
+<table>
+    <thead>
+        <tr>
+            <th>Room Type</th>
+            <th>Bed Size</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model.Rooms)
+        {
+            <tr>
+                <td>@room.RoomType</td>
+                <td>@room.BedSize</td>
+                <td>@room.Price</td>
+                <td>
+                    <a asp-page="/Rooms/index" asp-route-id="@room.ID" asp-route-selecteddate="@Model.SelectedDate">To Room</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<div>
+    <h4>Give a Review</h4>
+    <form method="post">
+        <div>
+            <label>Rating</label>
+            <select asp-for="@Model.SelectedRating" asp-items="Html.GetEnumSelectList<Rating>()">
+            </select>
+        </div>
+        <div>
+            <label>Comment</label>
+            <input asp-for="@Model.Comment"/>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Rating</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @if (review.Rating.ToString() == "One")
+                    {
+                        <p>⭐</p>
+                    }
+                    @if (review.Rating.ToString() == "Two")
+                    {
+                        <p>⭐⭐</p>
+                    }
+                    @if (review.Rating.ToString() == "Three")
+                    {
+                        <p>⭐⭐⭐</p>
+                    }
+                    @if (review.Rating.ToString() == "Four")
+                    {
+                        <p>⭐⭐⭐⭐</p>
+                    }
+                    @if (review.Rating.ToString() == "Five")
+                    {
+                        <p>⭐⭐⭐⭐⭐</p>
+                    }
+                </td>
+                <td>@review.Comment</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,21 @@
+﻿@page "{id:int}"
+@model Inlämning3ApplikationHotelBooking.Pages.Accounts.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post">
+    <partial name="_EditForm" for="Account" />
+    <button type="submit">Save</button>
+</form>
+
+<div>
+    <a asp-page="./Index">Go Back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

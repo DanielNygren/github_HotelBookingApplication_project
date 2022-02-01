@@ -1,0 +1,24 @@
+﻿
+@model Inlämning3ApplikationHotelBooking.Models.Account
+
+<div asp-validation-summary="ModelOnly"></div>
+<input type="hidden" asp-for="UserID">
+<table>
+    <tbody>
+        <tr>
+            <th><label asp-for="FirstName">@Html.DisplayNameFor(m => m.FirstName)</label></th>
+            <td><input asp-for="FirstName"></td>
+            <td><span asp-validation-for="FirstName"></span></td>
+        </tr>
+        <tr>
+            <th><label asp-for="LastName">@Html.DisplayNameFor(m => m.LastName)</label></th>
+            <td><input asp-for="LastName"></td>
+            <td><span asp-validation-for="LastName"></span></td>
+        </tr>
+        <tr>
+            <th><label asp-for="EmailAddress">@Html.DisplayNameFor(m => m.EmailAddress)</label></th>
+            <td><input asp-for="EmailAddress"></td>
+            <td><span asp-validation-for="EmailAddress"></span></td>
+        </tr>
+    </tbody>
+</table>

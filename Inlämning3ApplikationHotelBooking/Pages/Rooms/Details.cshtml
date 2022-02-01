@@ -1,0 +1,37 @@
+﻿@page
+@model Inlämning3ApplikationHotelBooking.Pages.Rooms.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl>
+        <dt>
+            Bed Size)
+        </dt>
+        <dd>
+            @Model.Room.BedSize)
+        </dd>
+        <dt>
+            Room Type
+        </dt>
+        <dd>
+            @Model.Room.RoomType)
+        </dd>
+        <dt>
+            Price
+        </dt>
+        <dd>
+            @Model.Room.Price
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Room.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,48 @@
+﻿@page  "{id:int}"
+@model Inlämning3ApplikationHotelBooking.Pages.Rooms.EditModel
+@using Inlämning3ApplikationHotelBooking.Models;
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Room</h4>
+<hr />
+<div>
+    <div>
+        <form method="post">
+            <input type="hidden" asp-for="Room.ID" />
+            <input type="hidden" asp-for="Room.Hotel.Name" />
+            <input type="hidden" asp-for="Room.Hotel.City" />
+            <input type="hidden" asp-for="Room.Hotel.Country" />
+
+            <div>
+                <label>Bed Typ</label>
+                <select asp-for="Room.BedSize" asp-items="Html.GetEnumSelectList<BedSize>()">
+                </select>
+            </div>
+            <div>
+                <label>Room Typ</label>
+                <select asp-for="Room.RoomType" asp-items="Html.GetEnumSelectList<RoomType>()">
+                </select>
+            </div>
+            <div>
+                <label asp-for="Room.Price"></label>
+                <input asp-for="Room.Price" />
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Hotels/Details" asp-route-id="@Model.Room.Hotel.ID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
